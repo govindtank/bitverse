@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-900 text-slate-100;
+    font-family: 'Courier New', monospace;
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-slate-800 border border-cyan-400/50 rounded-lg;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+
+  .cyber-button {
+    @apply bg-cyan-400 text-black font-bold py-2 px-4 rounded hover:bg-cyan-300 transition-all duration-200;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .cyber-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
