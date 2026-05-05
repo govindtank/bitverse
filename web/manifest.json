@@ -1,13 +1,14 @@
 {
-    "name": "bitverse",
-    "short_name": "bitverse",
+    "name": "BitVerse - Quantum Civilization Builder",
+    "short_name": "BitVerse",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#0A0A0F",
+    "theme_color": "#00FFFF",
+    "description": "A cyberpunk-themed quantum civilization builder game. Build your digital empire across sectors, manage resources, and explore multiple timelines.",
+    "orientation": "any",
     "prefer_related_applications": false,
+    "categories": ["games", "entertainment"],
     "icons": [
         {
             "src": "icons/Icon-192.png",

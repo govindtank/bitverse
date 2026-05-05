@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'theme/cyberpunk_theme.dart';
-import 'screens/home_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +15,9 @@ class BitVerseApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'BitVerse - Quantum Civilization Builder',
-      theme: CyberpunkTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      theme: CyberpunkTheme.darkTheme,
+      home: const SplashScreen(),
     );
   }
 }
