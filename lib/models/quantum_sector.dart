@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /// A sector represents a district within a quantum city across timelines
 class QuantumSector {
   final String id;
@@ -33,9 +35,9 @@ class QuantumSector {
         'type': type,
         'resourceLevel': resourceLevel,
         'population': population,
-        'buildings': buildings,
+        'buildings': jsonEncode(buildings),
         'createdAt': createdAt.toIso8601String(),
-        'metadata': metadata,
+        'metadata': metadata != null ? jsonEncode(metadata) : null,
       };
 
   factory QuantumSector.fromJson(Map<String, dynamic> json) {
@@ -47,9 +49,17 @@ class QuantumSector {
       type: json['type'] as String,
       resourceLevel: (json['resourceLevel'] as num?)?.toDouble() ?? 50.0,
       population: json['population'] as int? ?? 100,
-      buildings: List<String>.from(json['buildings'] ?? []),
+      buildings: List<String>.from(
+        json['buildings'] is String
+            ? jsonDecode(json['buildings'] as String)
+            : json['buildings'] ?? [],
+      ),
       createdAt: DateTime.parse(json['createdAt'] as String),
-      metadata: json['metadata'] != null ? Map<String, dynamic>.from(json['metadata']) : null,
+      metadata: json['metadata'] == null
+          ? null
+          : json['metadata'] is String
+              ? Map<String, dynamic>.from(jsonDecode(json['metadata'] as String))
+              : Map<String, dynamic>.from(json['metadata'] as Map),
     );
   }
 

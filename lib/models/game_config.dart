@@ -5,7 +5,7 @@ class GameConfig {
   final int maxTimelineBranches;
   final bool allowParallelPlay;   // Enable parallel timeline play
   final bool autoSaveEnabled;     // Auto-save interval in seconds
-  
+
   GameConfig({
     required this.id,
     this.gridSize = 8,
@@ -19,8 +19,8 @@ class GameConfig {
       id: json['id'] as String? ?? 'default',
       gridSize: json['gridSize'] as int? ?? 8,
       maxTimelineBranches: json['maxTimelineBranches'] as int? ?? 5,
-      allowParallelPlay: json['allowParallelPlay'] as bool? ?? true,
-      autoSaveEnabled: json['autoSaveEnabled'] as bool? ?? true,
+      allowParallelPlay: json['allowParallelPlay'] == 1 || json['allowParallelPlay'] == true,
+      autoSaveEnabled: json['autoSaveEnabled'] == 1 || json['autoSaveEnabled'] == true,
     );
   }
 
@@ -28,8 +28,8 @@ class GameConfig {
         'id': id,
         'gridSize': gridSize,
         'maxTimelineBranches': maxTimelineBranches,
-        'allowParallelPlay': allowParallelPlay,
-        'autoSaveEnabled': autoSaveEnabled,
+        'allowParallelPlay': allowParallelPlay ? 1 : 0,
+        'autoSaveEnabled': autoSaveEnabled ? 1 : 0,
       };
 }
 

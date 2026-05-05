@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -162,6 +164,7 @@ class HomeScreen extends ConsumerWidget {
         );
       },
       child: Container(
+        clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: CyberpunkTheme.surfaceMedium,
           borderRadius: BorderRadius.circular(8),
@@ -220,7 +223,7 @@ class HomeScreen extends ConsumerWidget {
 
   int _calculateGridSize(List<QuantumSector> sectors) {
     final count = sectors.length;
-    return (count > 0) ? (count / 8).ceil() : 4;
+    return (count > 0) ? sqrt(count).round() : 4;
   }
 
   Color _getResourceColor(ResourceType type) {

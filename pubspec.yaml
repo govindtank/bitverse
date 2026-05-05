@@ -22,7 +22,6 @@ dependencies:
   sqflite_common_ffi: ^2.3.0
   path: ^1.9.0
   path_provider: ^2.1.2
-  workmanager: ^0.5.2
   
   # PWA & Web Features
   url_launcher: ^6.2.4
@@ -42,9 +41,6 @@ dependencies:
   
   # Audio
   audioplayers: ^5.2.1
-  
-  # Notifications (PWA)
-  url_strategy: ^0.2.0
   
   # Utilities
   intl: ^0.18.1

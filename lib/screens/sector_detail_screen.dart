@@ -250,9 +250,10 @@ class SectorDetailScreen extends ConsumerWidget {
   }
 
   void _showAddBuildingDialog(BuildContext context, WidgetRef ref, QuantumSector sector) {
+    final navigator = Navigator.of(context);
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: CyberpunkTheme.surfaceDark,
         title: const Text('ADD BUILDING', style: TextStyle(color: CyberpunkTheme.primaryNeon)),
         content: Column(
@@ -274,7 +275,7 @@ class SectorDetailScreen extends ConsumerWidget {
                   resourceCost: 50,
                 );
                 await ref.read(gameStateNotifierProvider.notifier).addBuilding(sector.id, building);
-                Navigator.pop(context);
+                navigator.pop();
               },
             );
           }).toList(),
@@ -285,7 +286,7 @@ class SectorDetailScreen extends ConsumerWidget {
 
   void _upgradeSector(BuildContext context, WidgetRef ref, QuantumSector sector) {
     final updatedSector = sector.copyWith(
-      resourceLevel: (sector.resourceLevel + 10).clamp(0, 100),
+      resourceLevel: (sector.resourceLevel + 10).clamp(0.0, 100.0),
       population: sector.population + 50,
     );
     ref.read(gameStateNotifierProvider.notifier).updateSector(updatedSector);
@@ -303,7 +304,7 @@ class SectorDetailScreen extends ConsumerWidget {
   }
 
   void _boostResources(BuildContext context, WidgetRef ref, QuantumSector sector) {
-    final updatedSector = sector.copyWith(resourceLevel: (sector.resourceLevel + 20).clamp(0, 100));
+    final updatedSector = sector.copyWith(resourceLevel: (sector.resourceLevel + 20).clamp(0.0, 100.0));
     ref.read(gameStateNotifierProvider.notifier).updateSector(updatedSector);
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Resources boosted!'), backgroundColor: CyberpunkTheme.accentNeon),

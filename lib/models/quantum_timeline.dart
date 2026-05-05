@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:uuid/uuid.dart';
 
 /// Represents a quantum timeline - parallel reality branch
@@ -8,7 +10,7 @@ class QuantumTimeline {
   final bool isCurrent;         // Whether this is the active timeline
   final DateTime createdAt;
   final List<String> sectorIds;   // Sectors in this timeline
-  
+
   QuantumTimeline({
     required this.id,
     required this.name,
@@ -33,9 +35,13 @@ class QuantumTimeline {
       id: json['id'] as String,
       name: json['name'] as String,
       sequenceNumber: json['sequenceNumber'] as int,
-      isCurrent: json['isCurrent'] as bool,
+      isCurrent: json['isCurrent'] == 1 || json['isCurrent'] == true,
       createdAt: DateTime.parse(json['createdAt'] as String),
-      sectorIds: List<String>.from(json['sectorIds'] ?? []),
+      sectorIds: List<String>.from(
+        json['sectorIds'] is String
+            ? jsonDecode(json['sectorIds'] as String)
+            : json['sectorIds'] ?? [],
+      ),
     );
   }
 
@@ -43,9 +49,9 @@ class QuantumTimeline {
         'id': id,
         'name': name,
         'sequenceNumber': sequenceNumber,
-        'isCurrent': isCurrent,
+        'isCurrent': isCurrent ? 1 : 0,
         'createdAt': createdAt.toIso8601String(),
-        'sectorIds': sectorIds,
+        'sectorIds': jsonEncode(sectorIds),
       };
 
   @override
